@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Прости меня</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      text-align: center;
+      overflow: hidden;
+      user-select: none;
+    }
+    h1 {
+      color: #fff;
+      font-size: 24px;
+      margin-bottom: 40px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .btn-wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 120px;
+    }
+    button {
+      padding: 16px 32px;
+      font-size: 20px;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.15s ease;
+    }
+    #yesBtn {
+      background-color: #2ecc71;
+      color: white;
+      z-index: 5;
+    }
+    #noBtn {
+      background-color: #ff4757;
+      color: white;
+      z-index: 100;
+      position: relative;
+    }
+    .success {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+    .rose {
+      font-size: 100px;
+      animation: pulse 1.2s infinite;
+      margin-bottom: 20px;
+    }
+    .success-text {
+      color: #fff;
+      font-size: 34px;
+      font-weight: bold;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="title">Прости меня Жулдыз пожалуйста больше не повторится</h1>
+
+  <div class="btn-wrapper" id="box">
+    <!-- Кнопка "Да" СЛЕВА -->
+    <button id="yesBtn" onclick="accept()">Да</button>
+    <!-- Кнопка "Нет" СПРАВА -->
+    <button id="noBtn">Нет</button>
+  </div>
+
+  <div class="success" id="success">
+    <div class="rose">🌹</div>
+    <div class="success-text">Это тебе 🌹</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    let scale = 1;
+
+    function moveNoButton(e) {
+      if (e) e.preventDefault();
+      
+      // Кнопка "Да" растет с каждым наведением/касанием на "Нет"
+      scale += 0.25;
+      yesBtn.style.transform
